@@ -17,6 +17,24 @@
 	  * they use widgets of actual platform (OEM widgets in code are later changed into platform specific widgets).
 	  * the application is written in languages other than the native ones but it is still compiled to native and installed on platform.
 
+    * **Reactive frameworks** - 
+      * similar to OEM frameworks in that they use UI widgets of the platform 
+      * the difference is that our application logic is not compiled to native code (written in JS, UI is also written in JS but converted to UI of the platform).
+      * the key piece is a bridge that allows JS code to communicate to the native platform, bridge allows us to get native performance in UI animations and transitions.
+      * the challenges with OEM widgets is we need to deal with differences between the platforms i.e. not all UI widgets perform the same way on ios and android.
+
+    * **Flutter framework** - 
+      * while reactive and OEM framework use the UI widget of the platform, flutter does not , it rather uses SKIA 2d graphics library that is used in chrome , chromeos and android, firefox.. 
+      * flutter uses skia framework to build ui widgets and only uses  canvas and event system of platform to communicate with the user.
+        * this allows us to write apps that perform exactly the same way on each platform.
+      * logic is written in dart but compiled to native code. (but how can flutter support hot reload and also compile to native code.)
+        * reason is dart has evolved to support both JIT and AOT compilation
+        * during development hot reload uses JIT to compile app.
+        * for production AOT compiles to native code for each platform. 
+        * channels allow us to write native code and have dart communicate with the native platform directly.
+      * flutter structure - 
+         ![alt](/screenshots/flutter_structure.PNG)
+
 
 ## Flutter basics - 
 
@@ -24,19 +42,25 @@
   * flutter build ios OR apk  -> builds a release
   * flutter install -> installs the release on connected device
 
-  * while others use either webview or UI platform widgets flutter does not , it rather uses SKIA 2d graphics library.
-    * flutter uses skia framework to build ui widgets and only uses  canvas and event system of platform to communicate with the user.
-    * this allows to write apps that perform exactly the same way on each platform.
 
-  * logic is written in dart but compiled to native code. (but how can flutter support hot reload and also compile to native code.)
-    * reason is dart has evolved to support both JIT and AOT compilation
-    * during development hot reload uses JIT to compile app.
-    * for production AOT compiles to native code for each platform.
+  * **Scaffold** widget implements the basic material design visual layout structure. it is nice because it provides a lot of plumming for us.
+    * it will expand and fill the entire screen.
+    * also adds support for navigation bar.
+    * if our compiler knows as compile time what a property to a widget will be then we should make that widget a const for performance gains with large apps.
 
   * **Widgets** - 
     * they are basic building block of flutter application.
     * they are immutable decleration that holds the configuration for the UI elements.
-    * flutter uses widget to build a tree configuration that re nders into the UI element, rendering on the screen done using Skia library.
+    * flutter uses widget to build a tree configuration that renders into the UI element, this rendering on the screen done using Skia library.
+      * elements hold reference to the widget that helps it re-render when there are changes in widget.
+      * keys are there in widget to help elements reference there widget in some situations. (state is created and maintained on the element.)
+    * there are different types of widgets - 
+      * Functional widgets - like buttons and menu
+      * Style widgets - for colors and fonts
+      * Layout widgets - Column, Row, Stack , Positioned
+      * we can create our own widget by combining widget.
+    * the Center widget will grow as big as possible but will center its child widget, but we can control how big the center widget grows by controlling heightFactor and widthFactor (how big center widget becomes based on child size).
+    * dart supports both named and positional parameters in its methods. (positional parameters are required until they are wrapped in square braces, and we can also have required named parameters.)
 
 
   * With flutter we talk about widget tree, this is how UI is configured, each widget hold configuration for that section of the tree.
@@ -46,7 +70,4 @@
 	  * in widget there is a createElement method and when a widget is created it holds reference to the widget so that it knows when to update itself.
 	  * Keys are there to help elements refer to widget in some situations, if no keys element hold reference based on type.
 
-  * **Scaffold** widget implements the basic material design visual layout structure. it is nice because it provides a lot of plumming for us.
-    * it will expand and fill the entire screen.
-    * also adds support for navigation bar.
-    * if our compiler knows as compile time what a property to a widget will be then we should make that widget a const for performance gains with large apps.
+  
