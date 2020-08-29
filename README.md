@@ -82,4 +82,12 @@
 	  * Keys are there to help elements refer to widget in some situations, if no keys element hold reference based on type.
 
 
-  
+  * **Material design Vs Cupertino design** - (by default we use material design - it combines classis principles of good design with innovation of tech and science, developed by google and most android app follow this design principle)
+    * unlike material design apps mostly used by android , apple has its own design.
+    * But why do we care if our material theme design is already rendering on ios platform?? 
+      * maybe we are targeting a app for specific ios platform and cupertino theme.
+    * flutter provides widgets that allow us to follow cupertino design.
+    * with flutter material design app start with `MaterialApp` widget and to expose material design support to our widgets we use `Scaffold` or `Material` widget as the container or page.
+    * ***the cupertino design can also be run on android, this is because unlike other frameworks flutter does not use(convert) native widgets of device unlike reactnative, nativescript and xamarin.***
+    * all UI in flutter is drawn on platform canvas using SKIA framework.
+    * sample code for cupertino app is in [cupertino branch](https://github.com/mcoder20/expenditure_tracking_app/tree/feature/cupertino_trial)
