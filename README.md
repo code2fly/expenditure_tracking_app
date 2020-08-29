@@ -61,7 +61,18 @@
       * we can create our own widget by combining widget.
     * the Center widget will grow as big as possible but will center its child widget, but we can control how big the center widget grows by controlling heightFactor and widthFactor (how big center widget becomes based on child size).
     * dart supports both named and positional parameters in its methods. (positional parameters are required until they are wrapped in square braces, and we can also have required named parameters.)
-
+    * Column widget is streched to full of parent vertically, it allows us to control how the childrens are displayed by setting the `mainAxis` using `mainAxisAlignment` property.
+  
+  * **StatelessWidget** - 
+    * a widget that has that has no mutable state that it has to track. (it cannot remember anything from the last time it was built)
+    * in general when a widget is built it is added to the widget tree.
+    * when added to a tree framework calls the createElement() method on the widget.
+    * this in turn creates an element and adds it to the element tree.
+    * when the Text element is in the element tree it has a reference to the Text widget.
+    * the element then calls build() method on the text widget.
+    * if parameter of a text widget is changed (like in bootstarter app for counter of button) the previous widget is removed and a new widget is created
+    and the element retrieves new text configuration from that widget.
+    * ***but in our basic stateless app we do not have stateful widget then what causes our app to create widgets and element*** - this is because of the `runApp` method in main.dart, this creates the main stateless widget that we are trying to create and start the whole process.
 
   * With flutter we talk about widget tree, this is how UI is configured, each widget hold configuration for that section of the tree.
     * when a top level widget is changed say underlying data is updated, the widgets below it are updated.
@@ -69,5 +80,6 @@
     * in flutter widget can be viewed as a configuration for element (element is visual aspect of the widget.).
 	  * in widget there is a createElement method and when a widget is created it holds reference to the widget so that it knows when to update itself.
 	  * Keys are there to help elements refer to widget in some situations, if no keys element hold reference based on type.
+
 
   

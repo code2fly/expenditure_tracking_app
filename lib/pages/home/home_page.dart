@@ -22,7 +22,14 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: Center(
-        child: Text('My First Page'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Oneee'),
+            Text('Two'),
+            Text('Threee'),
+          ],
+        ),
       ),
     );
   }
