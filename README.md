@@ -91,3 +91,22 @@
     * ***the cupertino design can also be run on android, this is because unlike other frameworks flutter does not use(convert) native widgets of device unlike reactnative, nativescript and xamarin.***
     * all UI in flutter is drawn on platform canvas using SKIA framework.
     * sample code for cupertino app is in [cupertino branch](https://github.com/mcoder20/expenditure_tracking_app/tree/feature/cupertino_trial)
+
+  
+  * **Text, Icon, Image Support in flutter** - 
+    * Icon widget has a positional property is IconData, it is essentially a int that holds a unicode for the image .
+      * we can also use 3rd party icons like fontawesome.
+    * semanticLabel property is most of the widgets, and used by screen readers for the visually impaired.
+    * Image widget supports format like animated gif, gif, web, jpeg, png etc..
+    * Image widget  encapsulates all the challenges that we have while working with images on to a nice easy to use widget. There are several constructors for loading images from different sources.
+      * `Image.asset` for loading images from our application bundle
+      * `Image.network` for obtaining image from a url. 
+      * `Image.file` loads image from a file.
+      * `Image.memory` loads an array of bytes.
+    * by default image widget will take as much space that it can, but we can adjust it with width and height. though we should change only one of these property at a time and the other adjusts itself.
+    * there are advanced features like fade-in of images and other flutter packages for images like image caching.
+
+  * **Custom widget** - we can create custom widget by combining existing widgets.
+    * the brackets block inside constructor parameter describe the optional parameters
+    * to make a parameter mandatory it either needs to be before brackets as a positional parameter or @required should be used from meta.dart to make named parameter a required parameter.
+    * if we know all the info of a widget at compile time we should make the contructor of that widget a const (recommended to use when all variables are final, improves performance).

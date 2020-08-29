@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:expenditure_tracking_app/pages/home/widgets/custom_text.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -26,8 +27,14 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Oneee'),
-            Text('Two'),
+            CustomText(
+              text: 'TWOoooo',
+            ),
             Text('Threee'),
+            Image.network(
+              'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+              height: 400,
+            ),
           ],
         ),
       ),
