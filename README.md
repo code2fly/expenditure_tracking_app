@@ -73,6 +73,7 @@
     * if parameter of a text widget is changed (like in bootstarter app for counter of button) the previous widget is removed and a new widget is created
     and the element retrieves new text configuration from that widget.
     * ***but in our basic stateless app we do not have stateful widget then what causes our app to create widgets and element*** - this is because of the `runApp` method in main.dart, this creates the main stateless widget that we are trying to create and start the whole process.
+    ![alt](/screenshots/widget_element_tree.PNG)
 
   * With flutter we talk about widget tree, this is how UI is configured, each widget hold configuration for that section of the tree.
     * when a top level widget is changed say underlying data is updated, the widgets below it are updated.
@@ -110,3 +111,33 @@
     * the brackets block inside constructor parameter describe the optional parameters
     * to make a parameter mandatory it either needs to be before brackets as a positional parameter or @required should be used from meta.dart to make named parameter a required parameter.
     * if we know all the info of a widget at compile time we should make the contructor of that widget a const (recommended to use when all variables are final, improves performance).
+
+
+
+## Flutter layouts and nativgation - 
+
+  * **Container** widget is like a div tag in html
+    * when alignment property is set on a container , it can grow to the size of its parent.
+    * container without explicit width & height will size itself to wrap the child based on the parent's constraint.
+  * Layout issues can be challenging to debug, we can use devtools to resolve those.
+    * to activate devtools `flutter pub global activate devtools` - required only first time it is used.
+    * to start devtool `flutter pub global run devtools` -> to this provide the websocket url you get while running the service.
+
+  * **BoxDecoration** - used to add Corners , gradients and shadow effects to containers.
+    * decoration and foregroundDecoration property in container decorates/paints additional widget around the child widget.
+
+  * as we start building our app , the build method will start getting long and complex. to get over this we can - 
+    1. break main build method into several supporting build methods like `Widget build(BuildContext context)  --> Widget header() --> Widget withdraw()`, each supporting build method builds out a child widget on the page. 
+        * It makes the build method easier and cleaner to manage. (but this approach is also considered as a anti-pattern by many.)
+    2. Instead what is suggested is if the build method is too big it should be split into seperate widgets not methods for better performance.
+    
+
+  * **Horizontal and vertical layouts** - using Row and Column
+    * **Column** -
+      * column's crossAxis constraint forces container to strech the width of the column but it does not forces the height to strech.
+      * we can use `MediaQuery` if we want to set height and width of something based on remaining size of the screen. MediaQuery is a InheritedWidget, which lets us get access to the size of the screen.
+      * for columns crossAxis runs left to right, mainAxis runs top to bottom.
+    * **Row** - 
+      * crossAxis runs top to bottom , mainAxis runs left to right.
+      * to get more control over spacing we can use we can use a widget that has a flex property like `Spacer`.
+        * we can add this at both ends and between widgets. (flex:2 , textwidget,flex:1,textWidget, flex:2  --> means spacer at each end are 2 times of the one in the center. the width is determined by remaining space the row has left.)
