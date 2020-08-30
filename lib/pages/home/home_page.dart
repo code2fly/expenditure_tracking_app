@@ -21,45 +21,84 @@ class HomePage extends StatelessWidget {
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
+        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          Spacer(
+            flex: 1,
+          ),
           _TotalBudget(amount: amount),
+          Spacer(
+            flex: 20,
+          ),
           Container(
             alignment: Alignment.center,
             padding: EdgeInsets.all(10),
+            // color: Colors.grey,
             child: Row(
               // mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.baseline,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Spacer(
-                  flex: 2,
+                _BarLine(
+                  color: Colors.red,
+                  height: 200,
+                  textLabel: 'Withdraw',
+                  amount: 200,
                 ),
-                Text(
-                  'first item',
-                  style: TextStyle(
-                    backgroundColor: Colors.green,
-                    fontSize: 20,
-                  ),
-                ),
-                Spacer(
-                  flex: 1,
-                ),
-                Text(
-                  'second item',
-                  style: TextStyle(
-                    backgroundColor: Colors.green,
-                    fontSize: 20,
-                  ),
-                ),
-                Spacer(
-                  flex: 2,
+                _BarLine(
+                  color: Colors.green,
+                  height: 500,
+                  textLabel: 'Deposit',
+                  amount: 500,
                 ),
               ],
             ),
-            color: Colors.blue,
+          ),
+          Spacer(
+            flex: 1,
           ),
         ],
       ),
     );
+  }
+}
+
+// ideally this should be done with charts provided by flutter instead of coloring containers
+class _BarLine extends StatelessWidget {
+  final double height;
+  final Color color;
+  final String textLabel;
+  final double amount;
+  const _BarLine({
+    Key key,
+    this.height,
+    this.color,
+    this.textLabel,
+    this.amount,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+      Container(
+        alignment: Alignment.center,
+        height: height,
+        width: 80,
+        color: color,
+      ),
+      Text(
+        '$textLabel',
+        style: TextStyle(
+            // fontSize: 20,
+            ),
+      ),
+      Text(
+        '\$$amount',
+        style: TextStyle(
+            // fontSize: 20,
+            ),
+      ),
+    ]);
   }
 }
 
