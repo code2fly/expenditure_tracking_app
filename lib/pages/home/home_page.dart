@@ -1,3 +1,4 @@
+import 'package:expenditure_tracking_app/pages/home/widgets/menu.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -7,7 +8,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.menu),
+        // leading: Icon(Icons.menu),
         title: const Text('Home'),
         centerTitle: true,
         actions: [
@@ -18,6 +19,7 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
+      drawer: Menu(),
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -33,7 +35,7 @@ class HomePage extends StatelessWidget {
           Container(
             alignment: Alignment.center,
             padding: EdgeInsets.all(10),
-            // color: Colors.grey,
+            color: Colors.grey,
             child: Row(
               // mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -41,13 +43,13 @@ class HomePage extends StatelessWidget {
               children: [
                 _BarLine(
                   color: Colors.red,
-                  height: 200,
+                  height: 100,
                   textLabel: 'Withdraw',
                   amount: 200,
                 ),
                 _BarLine(
                   color: Colors.green,
-                  height: 500,
+                  height: 400,
                   textLabel: 'Deposit',
                   amount: 500,
                 ),

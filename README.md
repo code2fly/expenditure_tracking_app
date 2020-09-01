@@ -141,3 +141,15 @@
       * crossAxis runs top to bottom , mainAxis runs left to right.
       * to get more control over spacing we can use we can use a widget that has a flex property like `Spacer`.
         * we can add this at both ends and between widgets. (flex:2 , textwidget,flex:1,textWidget, flex:2  --> means spacer at each end are 2 times of the one in the center. the width is determined by remaining space the row has left.)
+
+  * 1 thing we perform a lot in flutter is importing libraries, creating a library of widgets lets us cut down the number of imports we need to include.
+    * to create a library in dart create index.dart file in the main folder containing different widgets in child folders.
+    * first line of index.dart should be `library library_name;` followed by export of relative dart files from which we want to export widgets.
+
+  * **Navigation between pages with routes** - 
+    * for navigation between pages we can use `Drawer` widget.
+    * routes are kept in a Map of path and WidgetBuilder.
+    * to use route define initialRoute and then routes in the home page.
+      * when we add these routes the hot reload will not work, coz since the statefulwidget store its state on the element , hot reload causes the element to call its build method on corresponding widget which results in re-building of widget tree but the element tree is not rebuilt --> the issue is bcoz hot reload will have elements call their widget's build method but the state object is not reloaded.
+      * MaterialApp is a stateful widget and route information is stored in its state.
+    * to add navigation functionality to drawer ListItems use `onTap` property with a method call to `Navigator.of(context)` -> this allows us to traverse up the tree to find a widget (context holds position of our widget in the element tree, from this we can navigate up the tree and find Navigator state ). with the Navigator state object we can push a new named route on to the stack `Navigator.of(context).pushNamed('/someroute')`.

@@ -1,5 +1,5 @@
-import 'package:expenditure_tracking_app/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:expenditure_tracking_app/routes.dart';
 
 class Application extends StatelessWidget {
   const Application({Key key}) : super(key: key);
@@ -11,7 +11,9 @@ class Application extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: HomePage(),
+      // home: HomePage(),
+      initialRoute: '/',
+      routes: routes,
     );
   }
 }
